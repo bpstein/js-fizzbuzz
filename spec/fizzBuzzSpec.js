@@ -1,62 +1,48 @@
-// Print the numbers from 1 to 100
-// If a number is divisible by 3 print "Fizz" instead
-// If a number is divisible by 5 print "Buzz" instead
-// If a number is divisible by 3 and 5 print "FizzBuzz" instead
+describe('FizzBuzz', function() {
 
-
-describe("FizzBuzz", function() {
   var fizzBuzz;
 
   beforeEach(function() {
-    fizzBuzz = new fizzBuzz();
+    fizzBuzz = new FizzBuzz();
   });
 
-  // it("should be able to play a Song", function() {
-  //   player.play(song);
-  //   expect(player.currentlyPlayingSong).toEqual(song);
-
-  //   //demonstrates use of custom matcher
-  //   expect(player).toBePlaying(song);
-  // });
-
-  describe("when song has been paused", function() {
-    beforeEach(function() {
-      player.play(song);
-      player.pause();
+  describe('multiples of 3', function() {
+    it('fizzes for 3', function() {
+      expect(fizzBuzz.play(3)).toEqual('fizz');
     });
 
-    it("should indicate that the song is currently paused", function() {
-      expect(player.isPlaying).toBeFalsy();
-
-      // demonstrates use of 'not' with a custom matcher
-      expect(player).not.toBePlaying(song);
-    });
-
-    it("should be possible to resume", function() {
-      player.resume();
-      expect(player.isPlaying).toBeTruthy();
-      expect(player.currentlyPlayingSong).toEqual(song);
+    it('fizzes for 6', function() {
+      expect(fizzBuzz.play(6)).toEqual('fizz');
     });
   });
 
-  // demonstrates use of spies to intercept and test method calls
-  it("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
+  describe('multiples of 5', function() {
+    it('buzzes for 5', function() {
+      expect(fizzBuzz.play(5)).toEqual('buzz');
+    });
 
-    player.play(song);
-    player.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+    it('buzzes for 10', function() {
+      expect(fizzBuzz.play(10)).toEqual('buzz');
+    });
   });
 
-  //demonstrates use of expected exceptions
-  describe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      player.play(song);
+  describe('multiples of 3 and 5', function() {
+    it('fizzbuzzes for 15', function() {
+      expect(fizzBuzz.play(15)).toEqual('fizzbuzz');
+    });
 
-      expect(function() {
-        player.resume();
-      }).toThrowError("song is already playing");
+    it('fizzbuzzes for 30', function() {
+      expect(fizzBuzz.play(30)).toEqual('fizzbuzz');
+    });
+  });
+
+  describe('all other numbers', function() {
+    it('1 for 1', function() {
+      expect(fizzBuzz.play(1)).toEqual(1);
+    });
+
+    it('11 for 11', function() {
+      expect(fizzBuzz.play(11)).toEqual(11);
     });
   });
 });
